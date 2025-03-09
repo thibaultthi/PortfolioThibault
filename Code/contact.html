@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'crimson': ['"Crimson Text"', 'serif'],
+                    },
+                    boxShadow: {
+                        'project': '16px 15px 14.1px rgba(0, 0, 0, 0.19)',
+                    }
+                },
+            },
+        }
+    </script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Maps JavaScript API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJJ_hm91-WRK1OgWX5oewGiQlj07mZ8yk"></script>
+</head>
+<body class="min-h-screen font-crimson flex flex-col">
+    <!-- Background Layers -->
+    <div class="fixed inset-0 z-[-4] bg-white"></div>
+    <div class="fixed inset-0 z-[-3] bg-[#1d1d1d] opacity-30"></div>
+    <div class="fixed inset-0 z-[-2] gradient-background opacity-[0.15]"></div>
+    <div class="fixed inset-0 z-[-1] opacity-5">
+        <img src="assets/images/noise.png" alt="" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Header Navigation -->
+    <!-- Name/Home Link -->
+    <a href="index.html" class="absolute top-8 left-8 text-[24px] text-black font-crimson hover:opacity-70 transition-opacity z-20">
+        Thibault Thierry
+    </a>
+    
+    <header class="w-full p-8 relative z-10">
+        <nav class="relative max-w-4xl mx-auto flex justify-center items-center gap-8">
+            <a href="projects.html" class="text-white text-[min(1.5vw,24px)] border border-white bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-white/10 transition-all inline-block font-crimson">Projects</a>
+            <a href="contact.html" class="text-black text-[min(1.5vw,24px)] border border-black bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-black/10 transition-all inline-block font-crimson">Contact</a>
+            <a href="about.html" class="text-white text-[min(1.5vw,24px)] border border-white bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-white/10 transition-all inline-block font-crimson">About Me</a>
+        </nav>
+    </header>
+
+    <!-- Floating Menu -->
+    <div id="floatingMenu" class="fixed w-full p-8 top-0 opacity-0 transition-opacity duration-300 z-50">
+        <nav class="relative max-w-4xl mx-auto flex justify-center items-center gap-8">
+            <a href="projects.html" class="text-white text-[min(1.5vw,24px)] border border-white bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-white/10 transition-all inline-block font-crimson">Projects</a>
+            <a href="contact.html" class="text-black text-[min(1.5vw,24px)] border border-black bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-black/10 transition-all inline-block font-crimson">Contact</a>
+            <a href="about.html" class="text-white text-[min(1.5vw,24px)] border border-white bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-white/10 transition-all inline-block font-crimson">About Me</a>
+        </nav>
+    </div>
+
+    <!-- Contact Section -->
+    <main class="relative px-8 flex-1">
+        <div class="container mx-auto">
+            <!-- Contact Content -->
+            <section class="contact-section">
+                <h1 class="text-black text-[60px] font-crimson">Let's Work Together!</h1>
+                
+                <div class="contact-container">
+                    <form class="contact-form" action="#" method="POST">
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email*</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Name*</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" required>
+                            <label for="subject">Subject</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" required></textarea>
+                            <label for="message">Message</label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                    <div class="map-container">
+                        <a href="https://www.linkedin.com/in/thierrythibault" target="_blank" rel="noopener noreferrer" class="linkedin-link">
+                            <img src="assets/images/LinkedIn.png" alt="LinkedIn Profile" class="linkedin-background">
+                        </a>
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-8 mt-auto">
+        <div class="container mx-auto text-center">
+            <div class="flex flex-col items-center justify-center gap-4">
+                <div class="text-black/70 font-crimson text-lg">
+                    Made with <span class="text-red-500">❤</span> by Thibault
+                </div>
+                <div class="text-black/50 font-crimson text-sm">
+                    © <span id="currentYear"></span> All rights reserved
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html> 

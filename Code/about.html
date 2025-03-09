@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'crimson': ['"Crimson Text"', 'serif'],
+                    },
+                    boxShadow: {
+                        'project': '16px 15px 14.1px rgba(0, 0, 0, 0.19)',
+                    }
+                },
+            },
+        }
+    </script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="h-screen font-crimson flex flex-col overflow-hidden">
+    <!-- Background Layers -->
+    <div class="fixed inset-0 z-[-4] bg-white"></div>
+    <div class="fixed inset-0 z-[-3] bg-[#1d1d1d] opacity-30"></div>
+    <div class="fixed inset-0 z-[-2] gradient-background opacity-[0.15]"></div>
+    <div class="fixed inset-0 z-[-1] opacity-5">
+        <img src="assets/images/noise.png" alt="" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Header Navigation -->
+    <!-- Name/Home Link -->
+    <a href="index.html" class="absolute top-8 left-8 text-[24px] text-black font-crimson hover:opacity-70 transition-opacity z-20">
+        Thibault Thierry
+    </a>
+    
+    <header class="w-full p-8 relative z-10">
+        <nav class="relative max-w-4xl mx-auto flex justify-center items-center gap-8">
+            <a href="projects.html" class="text-white text-[min(1.5vw,24px)] border border-white bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-white/10 transition-all inline-block font-crimson">Projects</a>
+            <a href="contact.html" class="text-white text-[min(1.5vw,24px)] border border-white bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-white/10 transition-all inline-block font-crimson">Contact</a>
+            <a href="about.html" class="text-black text-[min(1.5vw,24px)] border border-black bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-black/10 transition-all inline-block font-crimson">About Me</a>
+        </nav>
+    </header>
+
+    <!-- Floating Menu -->
+    <div id="floatingMenu" class="fixed w-full p-8 top-0 opacity-0 transition-opacity duration-300 z-50">
+        <nav class="relative max-w-4xl mx-auto flex justify-center items-center gap-8">
+            <a href="projects.html" class="text-white text-[min(1.5vw,24px)] border border-white bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-white/10 transition-all inline-block font-crimson">Projects</a>
+            <a href="contact.html" class="text-white text-[min(1.5vw,24px)] border border-white bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-white/10 transition-all inline-block font-crimson">Contact</a>
+            <a href="about.html" class="text-black text-[min(1.5vw,24px)] border border-black bg-transparent rounded-full px-[min(1.5vw,24px)] py-[min(0.5vw,8px)] hover:bg-black/10 transition-all inline-block font-crimson">About Me</a>
+        </nav>
+    </div>
+
+    <!-- About Section -->
+    <main class="relative flex flex-col">
+        <!-- First Page -->
+        <section id="finance-page" class="px-8 h-screen relative">
+            <div class="container mx-auto">
+                <!-- About Content -->
+                <div id="finance-content" class="max-w-[1400px] mx-auto transition-all duration-700 pt-[5px]">
+                    <!-- Main text and timeline section -->
+                    <div class="flex items-start">
+                        <!-- Text content -->
+                        <div class="flex flex-col gap-[10px] w-[65%]">
+                            <h2 class="text-black text-[54px] font-crimson">The Finance Era</h2>
+                            <p class="text-white text-[30px] font-crimson">2017 - 2022</p>
+                            <p class="text-white text-[19px] font-crimson max-w-[1000px] leading-[1.3] text-justify mt-2">
+                                My journey started in France, where I earned my Master's in business, finance, and audit. 
+                                I spent those years deep in numbers, strategy, and risk analysis, gaining hands-on experience 
+                                in banking. It was structured, challenging, and a solid career path—but I knew my ambitions 
+                                stretched beyond borders. I wanted more than just a job; I wanted an international experience. 
+                                That's when I set my sights on the U.S. and started searching for opportunities that would 
+                                take me there.
+                            </p>
+                            <h2 class="text-black text-[54px] font-crimson mt-3">Unlocked Skills</h2>
+                        </div>
+                        
+                        <!-- Timeline dots -->
+                        <div class="fixed right-8 top-[45%] -translate-y-1/2 flex flex-col gap-[10px] items-center z-10">
+                            <div class="cursor-pointer">
+                                <div class="timeline-dot w-[8px] h-[36px] bg-white rounded-[40px] opacity-100 hover:opacity-80 transition-opacity"></div>
+                            </div>
+                            <div class="cursor-pointer">
+                                <div class="timeline-dot w-[8px] h-[36px] bg-white rounded-[40px] opacity-50 hover:opacity-80 transition-opacity"></div>
+                            </div>
+                            <div class="cursor-pointer">
+                                <div class="timeline-dot w-[8px] h-[36px] bg-white rounded-[40px] opacity-50 hover:opacity-80 transition-opacity"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills cards -->
+                    <div class="flex justify-center gap-[35px] mt-[15px]">
+                        <!-- Diploma Card -->
+                        <div class="group perspective">
+                            <div class="relative preserve-3d duration-500 w-[210px] h-[260px] group-hover:[transform:rotateX(180deg)]">
+                                <!-- Front of card -->
+                                <div class="absolute inset-0 backface-hidden">
+                                    <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-4">
+                                        <img src="assets/images/diploma.png" alt="Diploma" class="w-[190px] h-[190px] object-center">
+                                    </div>
+                                </div>
+                                <!-- Back of card -->
+                                <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                    <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-6">
+                                        <div class="text-[23px] text-black font-crimson text-center flex flex-col gap-4">
+                                            <p>Finance&nbsp;&amp;&nbsp;Accounting</p>
+                                            <p>Marketing</p>
+                                            <p>Management</p>
+                                            <p>Decision-Making</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Audit Card -->
+                        <div class="group perspective">
+                            <div class="relative preserve-3d duration-500 w-[210px] h-[260px] group-hover:[transform:rotateX(180deg)]">
+                                <!-- Front of card -->
+                                <div class="absolute inset-0 backface-hidden">
+                                    <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-4">
+                                        <img src="assets/images/audit.png" alt="Audit" class="w-[190px] h-[190px] object-center">
+                                    </div>
+                                </div>
+                                <!-- Back of card -->
+                                <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                    <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-6">
+                                        <div class="text-[23px] text-black font-crimson text-center flex flex-col gap-4">
+                                            <p>Financial Statements</p>
+                                            <p>Internal Control</p>
+                                            <p>Regulatory Standards</p>
+                                            <p>Risk Assessment</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Bank Card -->
+                        <div class="group perspective">
+                            <div class="relative preserve-3d duration-500 w-[210px] h-[260px] group-hover:[transform:rotateX(180deg)]">
+                                <!-- Front of card -->
+                                <div class="absolute inset-0 backface-hidden">
+                                    <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-4">
+                                        <img src="assets/images/banking.png" alt="Banking" class="w-[190px] h-[190px] object-center">
+                                    </div>
+                                </div>
+                                <!-- Back of card -->
+                                <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                    <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-6">
+                                        <div class="text-[23px] text-black font-crimson text-center flex flex-col gap-4">
+                                            <p>Risk Management</p>
+                                            <p>Credit Analysis</p>
+                                            <p>Financial Markets</p>
+                                            <p>Retail Banking</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Second Page -->
+        <section id="dev-page" class="px-8 h-screen fixed left-0 w-full transition-all duration-700 bg-white flex items-center" style="top: 100%">
+            <!-- Background Layers -->
+            <div class="absolute inset-0 z-[1] bg-white"></div>
+            <div class="absolute inset-0 z-[2] bg-[#1d1d1d] opacity-30"></div>
+            <div class="absolute inset-0 z-[3] gradient-background opacity-[0.15]"></div>
+            <div class="absolute inset-0 z-[4] opacity-5">
+                <img src="assets/images/noise.png" alt="" class="w-full h-full object-cover">
+            </div>
+            <!-- Content -->
+            <div class="relative z-[5] w-full">
+                <div class="container mx-auto">
+                    <div id="dev-content" class="max-w-[1400px] mx-auto transition-all duration-700 pt-[5px]">
+                        <!-- Main text and timeline section -->
+                        <div class="flex items-start">
+                            <!-- Text content -->
+                            <div class="flex flex-col gap-[10px] w-[65%]">
+                                <h2 class="text-black text-[54px] font-crimson">Next Stop: USA</h2>
+                                <p class="text-white text-[30px] font-crimson">2022 - 2023</p>
+                                <p class="text-white text-[19px] font-crimson max-w-[1000px] leading-[1.3] text-justify mt-2">
+                                    In November 2022, I moved to the U.S. to work as a financial analyst for Saint-Gobain Adfors. 
+                                    While adapting to a new country, I started learning Python on my own, initially to automate tasks and improve efficiency. 
+                                    The more I coded, the more I realized I enjoyed problem-solving through technology rather than working with financial data. 
+                                    Over time, it became clear—finance wasn't the right fit for me. This realization set the stage for my transition into tech.
+                                </p>
+                                <h2 class="text-black text-[54px] font-crimson mt-3">Unlocked Skills</h2>
+                            </div>
+                        </div>
+
+                        <!-- Skills cards -->
+                        <div class="flex justify-center gap-[35px] mt-[15px]">
+                            <!-- Excel Card -->
+                            <div class="group perspective">
+                                <div class="relative preserve-3d duration-500 w-[210px] h-[260px] group-hover:[transform:rotateX(180deg)]">
+                                    <div class="absolute inset-0 backface-hidden">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-4">
+                                            <img src="assets/images/Excel.png" alt="Excel" class="w-[190px] h-[190px] object-center">
+                                        </div>
+                                    </div>
+                                    <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-6">
+                                            <div class="text-[23px] text-black font-crimson text-center flex flex-col gap-4">
+                                                <p>Formulas</p>
+                                                <p>Pivot Tables</p>
+                                                <p>Formatting</p>
+                                                <p>Automation</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Python Card -->
+                            <div class="group perspective">
+                                <div class="relative preserve-3d duration-500 w-[210px] h-[260px] group-hover:[transform:rotateX(180deg)]">
+                                    <div class="absolute inset-0 backface-hidden">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-4">
+                                            <img src="assets/images/Python.png" alt="Python" class="w-[190px] h-[190px] object-center">
+                                        </div>
+                                    </div>
+                                    <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-6">
+                                            <div class="text-[23px] text-black font-crimson text-center flex flex-col gap-4">
+                                                <p>Data Types</p>
+                                                <p>Functions</p>
+                                                <p>Libraries</p>
+                                                <p>OOP</p>
+                                                <p>APIs</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SAP Card -->
+                            <div class="group perspective">
+                                <div class="relative preserve-3d duration-500 w-[210px] h-[260px] group-hover:[transform:rotateX(180deg)]">
+                                    <div class="absolute inset-0 backface-hidden">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-4">
+                                            <img src="assets/images/SAP.png" alt="SAP" class="w-[190px] h-[190px] object-center">
+                                        </div>
+                                    </div>
+                                    <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-6">
+                                            <div class="text-[23px] text-black font-crimson text-center flex flex-col gap-4">
+                                                <p>Data Management</p>
+                                                <p>Reporting</p>
+                                                <p>Transactions</p>
+                                                <p>Automation</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Finance Card -->
+                            <div class="group perspective">
+                                <div class="relative preserve-3d duration-500 w-[210px] h-[260px] group-hover:[transform:rotateX(180deg)]">
+                                    <div class="absolute inset-0 backface-hidden">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-4">
+                                            <img src="assets/images/Finance.png" alt="Finance" class="w-[190px] h-[190px] object-center">
+                                        </div>
+                                    </div>
+                                    <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-6">
+                                            <div class="text-[21px] text-black font-crimson text-center flex flex-col gap-3">
+                                                <p>Financial Statements</p>
+                                                <p>Budgeting</p>
+                                                <p>Risk Management</p>
+                                                <p>Forecasting</p>
+                                                <p>Analysis</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Third Page -->
+        <section id="future-page" class="px-8 h-screen fixed left-0 w-full transition-all duration-700 bg-white flex items-center" style="top: 100%">
+            <!-- Background Layers -->
+            <div class="absolute inset-0 z-[1] bg-white"></div>
+            <div class="absolute inset-0 z-[2] bg-[#1d1d1d] opacity-30"></div>
+            <div class="absolute inset-0 z-[3] gradient-background opacity-[0.15]"></div>
+            <div class="absolute inset-0 z-[4] opacity-5">
+                <img src="assets/images/noise.png" alt="" class="w-full h-full object-cover">
+            </div>
+            <!-- Content -->
+            <div class="relative z-[5] w-full flex flex-col min-h-screen">
+                <div class="container mx-auto mt-[80px] mb-[40px]">
+                    <div id="future-content" class="max-w-[1400px] mx-auto transition-all duration-700 pt-[5px]">
+                        <!-- Main text and timeline section -->
+                        <div class="flex items-start">
+                            <!-- Text content -->
+                            <div class="flex flex-col gap-[10px] w-[65%]">
+                                <h2 class="text-black text-[54px] font-crimson">Refactoring My Path</h2>
+                                <p class="text-white text-[30px] font-crimson">2024 - Present</p>
+                                <p class="text-white text-[19px] font-crimson max-w-[1000px] leading-[1.3] text-justify mt-2">
+                                    For years, I worked with numbers, analyzed financial statements, and navigated the world of corporate finance. 
+                                    It was structured, it was analytical—it made sense. But deep down, I knew I wanted more. 
+                                    In May of 2024, I took a step back, got my Green Card (huge milestone!), and decided to explore new horizons. 
+                                    I started to do freelance work, picked up projects in marketing and design—turns out, I loved building things. 
+                                    That's when it clicked: tech was where I wanted to be. So, I made the leap. 
+                                    Here I am now, building a Portfolio!
+                                </p>
+                                <h2 class="text-black text-[54px] font-crimson mt-3">Unlocked Skills</h2>
+                            </div>
+                        </div>
+
+                        <!-- Skills cards -->
+                        <div class="flex justify-center gap-[35px] mt-[15px]">
+                            <!-- HTML Card -->
+                            <div class="group perspective">
+                                <div class="relative preserve-3d duration-500 w-[210px] h-[260px] group-hover:[transform:rotateX(180deg)]">
+                                    <div class="absolute inset-0 backface-hidden">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-4">
+                                            <img src="assets/images/HTML.png" alt="HTML" class="w-[190px] h-[190px] object-center">
+                                        </div>
+                                    </div>
+                                    <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-6">
+                                            <div class="text-[23px] text-black font-crimson text-center flex flex-col gap-4">
+                                                <p>Core Elements</p>
+                                                <p>Forms & Inputs</p>
+                                                <p>Semantic HTML</p>
+                                                <p>Attributes</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- CSS Card -->
+                            <div class="group perspective">
+                                <div class="relative preserve-3d duration-500 w-[210px] h-[260px] group-hover:[transform:rotateX(180deg)]">
+                                    <div class="absolute inset-0 backface-hidden">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-4">
+                                            <img src="assets/images/CSS.png" alt="CSS" class="w-[190px] h-[190px] object-center">
+                                        </div>
+                                    </div>
+                                    <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-6">
+                                            <div class="text-[21px] text-black font-crimson text-center flex flex-col gap-3">
+                                                <p>Selectors & Sections</p>
+                                                <p>Box Model</p>
+                                                <p>Flexbox & Grid</p>
+                                                <p>Animations</p>
+                                                <p>Transitions</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Figma Card -->
+                            <div class="group perspective">
+                                <div class="relative preserve-3d duration-500 w-[210px] h-[260px] group-hover:[transform:rotateX(180deg)]">
+                                    <div class="absolute inset-0 backface-hidden">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-4">
+                                            <img src="assets/images/Figma.png" alt="Figma" class="w-[190px] h-[190px] object-center">
+                                        </div>
+                                    </div>
+                                    <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-6">
+                                            <div class="text-[23px] text-black font-crimson text-center flex flex-col gap-4">
+                                                <p>Auto Layout</p>
+                                                <p>Components</p>
+                                                <p>Prototyping</p>
+                                                <p>Design System</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- JS Card -->
+                            <div class="group perspective">
+                                <div class="relative preserve-3d duration-500 w-[210px] h-[260px] group-hover:[transform:rotateX(180deg)]">
+                                    <div class="absolute inset-0 backface-hidden">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-4">
+                                            <img src="assets/images/JS.png" alt="JavaScript" class="w-[190px] h-[190px] object-center">
+                                        </div>
+                                    </div>
+                                    <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                        <div class="w-[210px] h-[260px] bg-white/40 rounded-[22px] shadow-project flex items-center justify-center p-6">
+                                            <div class="text-[23px] text-black font-crimson text-center flex flex-col gap-4">
+                                                <p>Data Types</p>
+                                                <p>Functions</p>
+                                                <p>DOM Manipulation</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer -->
+                <footer class="mt-auto w-full p-4 text-center text-white">
+                    <p class="text-[16px] font-crimson">Made with ❤️ by Thibault Thierry | &copy; <span id="currentYear">2024</span>. All rights reserved.</p>
+                </footer>
+            </div>
+        </section>
+    </main>
+
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html> 
