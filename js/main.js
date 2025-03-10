@@ -384,4 +384,40 @@ if (document.getElementById('map')) {
         google.maps.event.trigger(map, 'resize');
         map.setCenter(sf);
     });
-} 
+}
+
+// Add this to your main.js file
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+// If you have timeline navigation code, wrap it in a condition
+if (!isMobile) {
+  // Your existing timeline code
+}
+
+// Mobile menu functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    if (mobileMenuBtn && closeMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.remove('translate-x-full');
+            document.body.classList.add('overflow-hidden');
+        });
+        
+        closeMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.add('translate-x-full');
+            document.body.classList.remove('overflow-hidden');
+        });
+        
+        // Close menu when clicking a link
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+            });
+        });
+    }
+}); 
