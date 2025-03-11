@@ -44,7 +44,7 @@
 .mobile-menu a {
   margin: 15px 0;
   font-size: 24px;
-  color: #000;
+  color: #000 !important;
   text-decoration: none;
 }
 
@@ -61,23 +61,6 @@
 
 .menu-overlay.active {
   display: block;
-}
-
-@media (max-width: 768px) {
-  header nav {
-    display: none;
-  }
-  
-  .mobile-nav-toggle {
-    display: block;
-  }
-  
-  /* Hide desktop name link and show mobile version */
-  .absolute.top-8.left-8 {
-    top: 20px;
-    left: 20px;
-    font-size: 18px;
-  }
 }
 
 /* General mobile adjustments */
@@ -97,20 +80,159 @@ p {
   font-size: 16px !important;
 }
 
-/* Home page mobile layout */
+/* Mobile styles */
 @media (max-width: 768px) {
-  .hero-content {
+  /* Navigation */
+  header nav {
+    display: none;
+  }
+  
+  .mobile-nav-toggle {
+    display: block;
+    top: 10px !important;
+    right: 10px !important;
+  }
+  
+  /* Hide the name link with stronger selectors */
+  a.absolute.top-8.left-8,
+  a[href="index.html"].absolute.top-8.left-8,
+  a[href="index.html"][class*="absolute"][class*="top-8"][class*="left-8"],
+  header + a.absolute.top-8.left-8,
+  body > a.absolute.top-8.left-8 {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  
+  /* Add more padding to the Work title */
+  .projects-section h1,
+  main h1,
+  h1.text-black.text-\[48px\],
+  h1[class*="text-black"][class*="text-[48px]"] {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    text-align: left !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Fix header positioning */
+  header {
+    position: relative !important;
+    z-index: 20 !important;
+  }
+  
+  /* Improved index page layout */
+  .h-screen {
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .overflow-hidden {
+    overflow-y: auto !important;
+  }
+  
+  /* Remove any unwanted containers at the top */
+  .absolute.inset-0:first-child {
+    display: none;
+  }
+  
+  /* Background elements */
+  .absolute.inset-0 {
+    position: relative;
+    height: auto;
+    min-height: 50vh;
+  }
+  
+  /* Main content area */
+  main.relative.flex-1 {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px;
-    margin-top: 80px;
+    padding: 1rem;
+    position: relative !important;
+    min-height: 80vh !important;
+    padding-top: 20px !important;
+    padding-bottom: 20vh !important; /* Reduce bottom padding */
   }
   
+  /* Make sure the hero content is visible and properly positioned */
+  .hero-content {
+    position: relative !important;
+    z-index: 10 !important;
+    text-align: center;
+    padding: 2rem 1rem !important;
+    margin: 20px auto !important;
+    width: 90% !important;
+    max-width: 500px !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    flex-direction: column;
+    align-items: center;
+    border: none !important;
+    display: block !important;
+    margin-top: 40vh !important;
+  }
+  
+  /* Make title text more visible against transparent background */
+  .hero-content h1 {
+    color: black !important;
+    text-shadow: 0 0 10px rgba(255,255,255,0.7) !important;
+    font-weight: bold !important;
+  }
+  
+  .hero-content h2 {
+    color: white !important;
+    text-shadow: 0 0 10px rgba(0,0,0,0.7) !important; /* Dark shadow for white text */
+    font-weight: bold !important;
+  }
+  
+  .hero-content p {
+    color: black !important;
+    text-shadow: 0 0 10px rgba(255,255,255,0.7) !important;
+    font-weight: bold !important;
+  }
+  
+  /* Text sizing for hero */
+  [class*="text-[3vw]"] {
+    font-size: 24px !important;
+  }
+  
+  [class*="text-[4vw]"] {
+    font-size: 32px !important;
+  }
+  
+  /* Profile image container */
   .profile-image-container {
-    width: 70%;
-    margin: 0 auto 30px;
+    position: fixed !important;
+    bottom: 0 !important; /* Position at bottom */
+    top: auto !important; /* Remove top positioning */
+    right: 0 !important;
+    width: 80% !important;
+    max-width: 350px !important;
+    margin: 0 !important;
+    padding-right: 0 !important;
+    aspect-ratio: auto !important;
+    z-index: 1 !important;
+    opacity: 0.3 !important;
   }
   
+  /* Profile image */
+  .profile-image-container img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: bottom right !important;
+    max-height: none !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Logo stack container */
   .logo-stack-container {
     width: 100%;
     opacity: 0.1;
@@ -118,15 +240,57 @@ p {
     z-index: -1;
   }
   
-  /* Projects page */
-  .grid.grid-cols-3 {
-    grid-template-columns: 1fr;
-    max-width: 100%;
-    padding: 0 20px;
+  /* Projects page - more specific fixes */
+  .projects-section, 
+  #projects-page, 
+  main.relative {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-y: auto !important;
+    position: static !important;
+    padding-top: 80px !important;
+    padding-bottom: 50px !important;
   }
   
+  /* Force the grid to be a column */
+  .grid.grid-cols-3, 
+  div[class*="grid-cols-3"],
+  .projects-container,
+  [class*="grid-cols"] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px !important;
+    margin: 0 auto !important;
+    grid-template-columns: 1fr !important;
+    overflow: visible !important;
+  }
+  
+  /* Center each card */
   .group.perspective {
-    margin: 0 auto;
+    margin: 20px auto !important;
+    width: 250px !important;
+    height: 250px !important;
+    transform: none !important;
+    display: block !important;
+  }
+  
+  /* Make sure cards are visible */
+  .preserve-3d, 
+  .preserve-3d > div > div {
+    width: 250px !important;
+    height: 250px !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Fix any overflow issues */
+  .overflow-hidden,
+  .overflow-x-hidden {
+    overflow: visible !important;
+    overflow-y: auto !important;
   }
   
   /* Contact page */
@@ -140,13 +304,21 @@ p {
   }
   
   #map {
-    width: 100%;
-    height: 250px;
+    width: 100% !important;
+    height: 300px !important;
   }
   
   .map-container {
     width: 100%;
     margin-top: 30px;
+  }
+  
+  /* LinkedIn image larger */
+  .linkedin-background {
+    width: 70% !important;
+    max-width: 70% !important;
+    margin: 0 auto;
+    display: block;
   }
   
   /* Form elements */
@@ -161,4 +333,91 @@ p {
     width: 100%;
     margin-top: 20px;
   }
+  
+  /* About page cards */
+  [class*="w-[210px]"], [class*="h-[260px]"] {
+    width: 70vw !important;
+    height: calc(70vw * 1.24) !important;
+    max-width: 300px !important;
+    max-height: 372px !important;
+  }
+  
+  /* Larger touch targets */
+  button, a.btn, input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 16px;
+    font-size: 18px;
+  }
+  
+  /* Footer positioning */
+  footer {
+    position: relative;
+    margin-top: 2rem;
+  }
+  
+  /* Remove the red test indicator */
+  body::before {
+    display: none !important;
+  }
+  
+  /* Make sure html and body are scrollable */
+  html, body {
+    height: auto !important;
+    overflow: auto !important;
+    position: relative !important;
+  }
+  
+  /* Make sure the projects container is properly positioned */
+  .projects-section {
+    position: relative !important;
+    z-index: 10 !important;
+    padding-top: 100px !important;
+  }
+  
+  /* Force project cards to be visible */
+  .group.perspective {
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    display: block !important;
+    margin: 30px auto !important;
+    transform: none !important;
+  }
+  
+  /* Inject JavaScript to fix project cards on mobile */
+  body.projects-page::after {
+    content: "";
+    display: none;
+  }
+  
+  /* Add a script tag to inject JavaScript for mobile projects page */
+  body.projects-page::before {
+    content: none;
+  }
+  
+  /* This will be added to projects.html via JavaScript */
+  body.projects-page {
+    overflow: auto !important;
+    height: auto !important;
+  }
+  
+  /* Hide the name link in the top left */
+  a.absolute.top-8.left-8 {
+    display: none !important;
+  }
+  
+  /* Add padding to the page title */
+  main h1, .projects-section h1 {
+    padding-left: 20px !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+}
+
+/* Adjust the absolute container for profile image */
+main .absolute.inset-0 {
+  position: relative !important;
+  min-height: 60vh;
+  width: 100%;
 } 
