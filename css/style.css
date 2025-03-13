@@ -5,19 +5,22 @@ body {
     display: flex;
     flex-direction: column;
 }
-
 .hero-content {
     position: relative;
     z-index: 50;
     pointer-events: auto;
 }
 
-/* Profile image styles */
-/* .profile-image {
-    transform-origin: center;
-    filter: drop-shadow(-9px 5px 18.9px rgba(0, 0, 0, 0.25));
-    mix-blend-mode: normal;
-} */
+/* Mobile navigation overlay */
+#mobileNav {
+    pointer-events: all;
+}
+#mobileNav nav {
+    pointer-events: all;
+}
+#mobileNav a {
+    pointer-events: all;
+}
 
 /* Add custom drop shadow that follows image shape */
 .drop-shadow-custom {
@@ -114,26 +117,6 @@ header {
     transform: rotateX(180deg);
 }
 
-/* Sparkle styles */
-/* .sparkle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    pointer-events: none;
-    will-change: transform;
-    transition: opacity 0.3s ease;
-    box-shadow: 0 0 2px rgba(255, 255, 255, 0.4);
-}
-
-.sparkle-container {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-} */
-
 .contact-section {
     display: flex;
     flex-direction: column;
@@ -225,6 +208,25 @@ main {
     display: flex;
     flex-direction: column;
 }
+/* Mobile scrolling fix */
+@media (max-width: 768px) {
+    body {
+      height: auto !important;
+      overflow: auto !important;
+    }
+    
+    main {
+      overflow: auto !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding-bottom: 4rem;
+    }
+    
+    /* Ensure grid has space at the bottom */
+    .grid {
+      padding-bottom: 2rem;
+    }
+  }
 
 footer {
     width: 100%;
@@ -296,34 +298,6 @@ footer .container {
         transform: none;
     }
 }
-
-/* Projects page styles */
-.projects-section {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.grid-cols-3 {
-    width: 100%;
-    transform-origin: center;
-}
-
-/* Project cards */
-.group.perspective {
-    transform: scale(0.95);
-}
-
-/* Card dimensions */
-.preserve-3d,
-.preserve-3d > div > div {
-    width: 230px;
-    height: 230px;
-}
-
 /* Ensure the title is not cut off */
 .projects-section h1,
 main h1 {
@@ -334,19 +308,17 @@ main h1 {
     padding-top: 2rem;
 }
 
-/* Adjust grid gap */
-.grid.grid-cols-3 {
-    gap: 2rem;
-    margin-bottom: 0;
-    padding-bottom: 2rem;
+
+/* These classes are needed for the 3D effect */
+.perspective {
+    perspective: 2000px;
 }
 
-/* Adjust main container */
-main.relative {
-    padding: 0;
-    height: calc(100vh - 160px);
-    justify-content: center;
-    margin: 0;
-    position: relative;
-    z-index: 15;
+.preserve-3d {
+    transform-style: preserve-3d;
+}
+
+.backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 } 

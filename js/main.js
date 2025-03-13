@@ -38,7 +38,7 @@
         ease: 'power2.out'
     });
 
-    // Mouse movement effect
+    // Mouse movement effect with pictures on the Home Page
     const hero = document.querySelector('.hero-content');
     const profileImage = document.querySelector('.profile-image-container');
     const logoStack = document.querySelector('.logo-stack-container');
@@ -55,7 +55,6 @@
                 duration: 1,
                 ease: 'power2.out'
             });
-            
             // Logo stack moves more for background effect
             gsap.to(logoStack, {
                 x: mouseX * 30,
@@ -68,18 +67,19 @@
 
     // Project cards parallax effect
     const projectCards = document.querySelectorAll('.group.perspective');
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     
-    if (projectCards.length > 0) { // Only run on pages with project cards
+    if (projectCards.length > 0 && !isMobile) { // Only run on desktop with project cards
         window.addEventListener('mousemove', (e) => {
             const mouseX = e.clientX / window.innerWidth - 0.5;
             const mouseY = e.clientY / window.innerHeight - 0.5;
             
             projectCards.forEach(card => {
                 gsap.to(card, {
-                    x: mouseX * 10, // Move max 10px horizontally
-                    y: mouseY * 10, // Move max 10px vertically
-                    rotateX: -mouseY * 5, // Subtle rotation on X axis
-                    rotateY: mouseX * 5, // Subtle rotation on Y axis
+                    x: mouseX * 10,
+                    y: mouseY * 10, 
+                    rotateX: -mouseY * 5,
+                    rotateY: mouseX * 5,
                     duration: 1,
                     ease: 'power2.out'
                 });
@@ -87,24 +87,7 @@
         });
     }
 
-    // Floating menu functionality
-    const floatingMenu = document.getElementById('floatingMenu');
-    const originalHeader = document.querySelector('header');
-    
-    window.addEventListener('mousemove', (e) => {
-        const headerRect = originalHeader.getBoundingClientRect();
-        
-        // Show floating menu when original header is out of view and mouse is near top
-        if (headerRect.bottom < 0 && e.clientY < 100) {
-            floatingMenu.style.opacity = '1';
-            setTimeout(() => {
-                floatingMenu.style.pointerEvents = 'auto';
-            }, 50); // Small delay to ensure opacity transition has started
-        } else {
-            floatingMenu.style.opacity = '0';
-            floatingMenu.style.pointerEvents = 'none';
-        }
-    });
+
 })();
 
 // Page transition logic
@@ -181,10 +164,15 @@ function updateDots() {
 
 // Handle wheel/trackpad events
 window.addEventListener('wheel', (e) => {
-    e.preventDefault();
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     
-    // If transition is in progress or scrolling is locked, ignore event
-    if (isTransitioning || scrollLocked) return;
+    // Only prevent default on desktop
+    if (!isMobile) {
+        e.preventDefault();
+    }
+    
+    // If transition is in progress, scrolling is locked, or we're on mobile, ignore event
+    if (isTransitioning || scrollLocked || isMobile) return;
 
     // Check if the scroll is significant enough to register
     if (Math.abs(e.deltaY) < SCROLL_THRESHOLD) return;
@@ -386,14 +374,6 @@ if (document.getElementById('map')) {
     });
 }
 
-// Add this to your main.js file
-const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-// If you have timeline navigation code, wrap it in a condition
-if (!isMobile) {
-  // Your existing timeline code
-}
-
 // Mobile menu functionality
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -401,12 +381,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileNav = document.getElementById('mobileNav');
     
     if (mobileMenuBtn && closeMenuBtn && mobileNav) {
-        mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             mobileNav.classList.remove('translate-x-full');
             document.body.classList.add('overflow-hidden');
         });
         
-        closeMenuBtn.addEventListener('click', () => {
+        closeMenuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             mobileNav.classList.add('translate-x-full');
             document.body.classList.remove('overflow-hidden');
         });
@@ -414,10 +398,46 @@ document.addEventListener('DOMContentLoaded', () => {
         // Close menu when clicking a link
         const mobileNavLinks = mobileNav.querySelectorAll('a');
         mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                // Don't prevent default here as we want to navigate
+                e.stopPropagation();
                 mobileNav.classList.add('translate-x-full');
                 document.body.classList.remove('overflow-hidden');
             });
         });
     }
-}); 
+});
+
+// Fix mobile scrolling
+document.addEventListener('DOMContentLoaded', () => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    
+    if (isMobile) {
+      // Remove height constraints from body and main
+      const bgLayers = document.querySelectorAll('.fixed.inset-0');
+      bgLayers.forEach(layer => {
+        layer.style.pointerEvents = 'none';
+      });
+      document.body.style.touchAction = 'auto';
+      document.documentElement.style.height = 'auto';
+      document.body.style.height = 'auto';
+      
+      // Enable scrolling directly (higher priority than CSS)
+      document.documentElement.style.overflowY = 'auto';
+      document.body.style.overflowY = 'auto';
+      
+      // Force main element to be scrollable
+      const mainElement = document.querySelector('main');
+      if (mainElement) {
+        mainElement.style.overflow = 'visible';
+        mainElement.style.minHeight = '0';
+        mainElement.style.flex = 'none';
+      }
+      
+      // Disable parallax completely on mobile to prevent interference
+      const projectCards = document.querySelectorAll('.group.perspective');
+      projectCards.forEach(card => {
+        card.style.transform = 'none';
+      });
+    }
+  });
