@@ -35,12 +35,12 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="h-screen font-crimson flex flex-col overflow-hidden">
+<body class="h-screen font-crimson flex flex-col md:overflow-hidden overflow-auto">
     <!-- Background Layers -->
-    <div class="fixed inset-0 z-[-4] bg-white"></div>
-    <div class="fixed inset-0 z-[-3] bg-[#1d1d1d] opacity-30"></div>
-    <div class="fixed inset-0 z-[-2] gradient-background opacity-[0.15]"></div>
-    <div class="fixed inset-0 z-[-1] opacity-5">
+    <div class="fixed inset-0 z-[-4] bg-white pointer-events-none"></div>
+    <div class="fixed inset-0 z-[-3] bg-[#1d1d1d] opacity-30 pointer-events-none"></div>
+    <div class="fixed inset-0 z-[-2] gradient-background opacity-[0.15] pointer-events-none"></div>
+    <div class="fixed inset-0 z-[-1] opacity-5 pointer-events-none">
         <img src="assets/images/noise.png" alt="" class="w-full h-full object-cover">
     </div>
 
@@ -84,88 +84,92 @@
     </div>
 
     <!-- Projects Section -->
-    <main class="relative px-8 flex-1 flex flex-col items-center">
-        <div class="container mx-auto">
+    <main class="relative px-8 flex-1 flex flex-col">
+        <div class="container mx-auto flex-1 flex flex-col">
             <!-- Title -->
-            <h1 class="text-black text-[48px] font-crimson mb-8">Work.</h1>
+            <h1 class="text-black text-[48px] font-crimson">Work.</h1>
             
             <!-- Projects Grid -->
-            <div class="grid grid-cols-1 place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[800px] mx-auto">
-                <!-- Project Cards -->
-                <div class="group perspective">
-                    <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
-                        <!-- Front of card -->
-                        <div class="absolute inset-0 backface-hidden">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
-                                <img src="assets/images/Portfolio.png" alt="Portfolio" class="w-[170px] h-[170px] object-contain">
+            <div class="flex-1 flex items-center">
+                <div class="grid grid-cols-1 place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[800px] mx-auto">
+                    <!-- Project Cards -->
+                    <div class="group perspective">
+                        <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
+                            <!-- Front of card -->
+                            <div class="absolute inset-0 backface-hidden">
+                                <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
+                                    <img src="assets/images/Portfolio.png" alt="Portfolio" class="w-[170px] h-[170px] object-contain">
+                                </div>
                             </div>
-                        </div>
-                        <!-- Back of card -->
-                        <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
-                                <span class="text-[32px] text-black font-crimson text-center w-full px-4">Read More</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="group perspective">
-                    <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
-                        <div class="absolute inset-0 backface-hidden">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project"></div>
-                        </div>
-                        <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
-                                <span class="text-[32px] text-black font-crimson text-center w-full px-4">Under Construction</span>
+                            <!-- Back of card -->
+                            <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                <a href="project-portfolio.html" class="block w-full h-full">
+                                    <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center hover:bg-white/60 transition-colors">
+                                        <span class="text-[32px] text-black font-crimson text-center w-full px-4">Read More</span>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="group perspective">
-                    <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
-                        <div class="absolute inset-0 backface-hidden">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project"></div>
-                        </div>
-                        <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
-                                <span class="text-[32px] text-black font-crimson text-center w-full px-4">Under Construction</span>
+                    <div class="group perspective">
+                        <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
+                            <div class="absolute inset-0 backface-hidden">
+                                <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project"></div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
+                                    <span class="text-[32px] text-black font-crimson text-center w-full px-4">Under Construction</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="group perspective">
-                    <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
-                        <div class="absolute inset-0 backface-hidden">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project"></div>
-                        </div>
-                        <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
-                                <span class="text-[32px] text-black font-crimson text-center w-full px-4">Under Construction</span>
+                    <div class="group perspective">
+                        <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
+                            <div class="absolute inset-0 backface-hidden">
+                                <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project"></div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
+                                    <span class="text-[32px] text-black font-crimson text-center w-full px-4">Under Construction</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Fifth card -->
-                <div class="group perspective">
-                    <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
-                        <div class="absolute inset-0 backface-hidden">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project"></div>
-                        </div>
-                        <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
-                                <span class="text-[32px] text-black font-crimson text-center w-full px-4">Under Construction</span>
+                    <div class="group perspective">
+                        <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
+                            <div class="absolute inset-0 backface-hidden">
+                                <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project"></div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
+                                    <span class="text-[32px] text-black font-crimson text-center w-full px-4">Under Construction</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Sixth card -->
-                <div class="group perspective">
-                    <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
-                        <div class="absolute inset-0 backface-hidden">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project"></div>
+                    <!-- Fifth card -->
+                    <div class="group perspective">
+                        <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
+                            <div class="absolute inset-0 backface-hidden">
+                                <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project"></div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
+                                    <span class="text-[32px] text-black font-crimson text-center w-full px-4">Under Construction</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
-                            <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
-                                <span class="text-[32px] text-black font-crimson text-center w-full px-4">Under Construction</span>
+                    </div>
+                    <!-- Sixth card -->
+                    <div class="group perspective">
+                        <div class="relative preserve-3d duration-500 w-[250px] h-[250px] group-hover:[transform:rotateX(180deg)]">
+                            <div class="absolute inset-0 backface-hidden">
+                                <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project"></div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden [transform:rotateX(180deg)]">
+                                <div class="w-[250px] h-[250px] bg-white/50 rounded-[9px] shadow-project flex items-center justify-center">
+                                    <span class="text-[32px] text-black font-crimson text-center w-full px-4">Under Construction</span>
+                                </div>
                             </div>
                         </div>
                     </div>

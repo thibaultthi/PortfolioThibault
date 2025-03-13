@@ -6,6 +6,24 @@
         yearSpan.textContent = new Date().getFullYear();
     }
 
+    // Handle Read More buttons
+    const readMoreButtons = document.querySelectorAll('.read-more-btn');
+    readMoreButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const paragraph = this.previousElementSibling;
+            const fullText = paragraph.getAttribute('data-full-text');
+            const mobileSpan = paragraph.querySelector('.md\\:hidden');
+            
+            if (this.textContent === 'Read More') {
+                mobileSpan.textContent = fullText;
+                this.textContent = 'Read Less';
+            } else {
+                mobileSpan.textContent = fullText.substring(0, 100) + '...';
+                this.textContent = 'Read More';
+            }
+        });
+    });
+
     // Create a timeline
     const tl = gsap.timeline();
 
@@ -114,27 +132,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Setup timeline dots functionality
 function setupTimelineDots() {
-    const dots = document.querySelectorAll('.timeline-dot');
-    if (!dots.length) return;
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', (e) => {
+    const dotLinks = document.querySelectorAll('.timeline-dot').forEach(dot => {
+        const link = dot.closest('a');
+        if (!link) return;
+        
+        link.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             if (isTransitioning) return;
             
-            switch(index) {
-                case 0:
+            const href = link.getAttribute('href');
+            switch(href) {
+                case '#finance-page':
                     if (currentPage !== 'finance') {
                         startTransition('finance');
                     }
                     break;
-                case 1:
+                case '#dev-page':
                     if (currentPage !== 'dev') {
                         startTransition('dev');
                     }
                     break;
-                case 2:
+                case '#future-page':
                     if (currentPage !== 'future') {
                         startTransition('future');
                     }
@@ -147,16 +166,20 @@ function setupTimelineDots() {
 // Update dots opacity based on current page
 function updateDots() {
     const dots = document.querySelectorAll('.timeline-dot');
-    dots.forEach((dot, index) => {
+    dots.forEach(dot => {
+        const link = dot.closest('a');
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
         switch(currentPage) {
             case 'finance':
-                dot.style.opacity = index === 0 ? '1' : '0.5';
+                dot.style.opacity = href === '#finance-page' ? '1' : '0.5';
                 break;
             case 'dev':
-                dot.style.opacity = index === 1 ? '1' : '0.5';
+                dot.style.opacity = href === '#dev-page' ? '1' : '0.5';
                 break;
             case 'future':
-                dot.style.opacity = index === 2 ? '1' : '0.5';
+                dot.style.opacity = href === '#future-page' ? '1' : '0.5';
                 break;
         }
     });
@@ -165,6 +188,12 @@ function updateDots() {
 // Handle wheel/trackpad events
 window.addEventListener('wheel', (e) => {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    
+    // Check if we're scrolling horizontally on a skills container
+    const isScrollingSkills = e.target.closest('.touch-pan-x');
+    if (isScrollingSkills) {
+        return; // Allow natural scrolling behavior
+    }
     
     // Only prevent default on desktop
     if (!isMobile) {
@@ -411,33 +440,53 @@ document.addEventListener('DOMContentLoaded', () => {
 // Fix mobile scrolling
 document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isAboutPage = window.location.pathname.includes('about.html');
     
-    if (isMobile) {
-      // Remove height constraints from body and main
-      const bgLayers = document.querySelectorAll('.fixed.inset-0');
-      bgLayers.forEach(layer => {
-        layer.style.pointerEvents = 'none';
-      });
-      document.body.style.touchAction = 'auto';
-      document.documentElement.style.height = 'auto';
-      document.body.style.height = 'auto';
-      
-      // Enable scrolling directly (higher priority than CSS)
-      document.documentElement.style.overflowY = 'auto';
-      document.body.style.overflowY = 'auto';
-      
-      // Force main element to be scrollable
-      const mainElement = document.querySelector('main');
-      if (mainElement) {
-        mainElement.style.overflow = 'visible';
-        mainElement.style.minHeight = '0';
-        mainElement.style.flex = 'none';
-      }
-      
-      // Disable parallax completely on mobile to prevent interference
-      const projectCards = document.querySelectorAll('.group.perspective');
-      projectCards.forEach(card => {
-        card.style.transform = 'none';
-      });
+    if (isMobile && isAboutPage) {
+        // Only prevent vertical scrolling on the About page
+        document.body.style.overflowY = 'hidden';
+        document.documentElement.style.overflowY = 'hidden';
+        
+        // Add touch event handlers
+        let touchStartY = 0;
+        let touchEndY = 0;
+        const SWIPE_THRESHOLD = 50;
+
+        document.addEventListener('touchstart', (e) => {
+            // Don't prevent default touch events
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            // Only prevent default for vertical scrolling outside of skill cards
+            if (!e.target.closest('.touch-pan-x')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchend', (e) => {
+            // Don't handle page transitions if we're in a scrollable area
+            if (isTransitioning || e.target.closest('.touch-pan-x')) return;
+            
+            touchEndY = e.changedTouches[0].clientY;
+            const swipeDistance = touchStartY - touchEndY;
+            
+            if (Math.abs(swipeDistance) > SWIPE_THRESHOLD) {
+                const currentIndex = pageOrder.indexOf(currentPage);
+                if (swipeDistance > 0 && currentIndex < pageOrder.length - 1) {
+                    // Swipe up - go to next page
+                    startTransition(pageOrder[currentIndex + 1]);
+                } else if (swipeDistance < 0 && currentIndex > 0) {
+                    // Swipe down - go to previous page
+                    startTransition(pageOrder[currentIndex - 1]);
+                }
+            }
+        }, { passive: true });
+
+        // Disable parallax on mobile
+        const projectCards = document.querySelectorAll('.group.perspective');
+        projectCards.forEach(card => {
+            card.style.transform = 'none';
+        });
     }
-  });
+});

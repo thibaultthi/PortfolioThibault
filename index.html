@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="min-h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,12 +35,12 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     </head>
-<body class="h-screen font-crimson flex flex-col overflow-hidden">
-    <!-- Background Layers -->
-    <div class="fixed inset-0 z-[-4] bg-white"></div>
-    <div class="fixed inset-0 z-[-3] bg-[#1d1d1d] opacity-30"></div>
-    <div class="fixed inset-0 z-[-2] gradient-background opacity-[0.15]"></div>
-    <div class="fixed inset-0 z-[-1] opacity-5">
+    <body class="min-h-screen font-crimson flex flex-col overflow-auto md:overflow-hidden relative">
+    <!-- Background Layers - Update to cover full content -->
+    <div class="fixed md:fixed inset-0 z-[-4] bg-white"></div>
+    <div class="fixed md:fixed inset-0 z-[-3] bg-[#1d1d1d] opacity-30"></div>
+    <div class="fixed md:fixed inset-0 z-[-2] gradient-background opacity-[0.15]"></div>
+    <div class="fixed md:fixed inset-0 z-[-1] opacity-5">
         <img src="assets/images/noise.png" alt="" class="w-full h-full object-cover">
     </div>
 
@@ -79,43 +79,41 @@
     </div>
 
     <!-- Hero Section -->
-    <main class="relative flex-1 flex items-center justify-center">
-        <div class="hero-content text-center z-10 absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <h2 class="text-[3vw] mb-4 font-crimson text-white font-semibold">Hi, Welcome to</h2>
-            <h1 class="text-black text-[4vw] font-normal font-crimson">Thibault's Portfolio</h1>
+    <main class="flex-1 flex flex-col relative min-h-screen md:flex md:items-center md:justify-center md:mb-32">
+        <!-- Hero Content -->
+        <div class="hero-content text-center z-10 md:absolute relative md:top-[40%] md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 py-8">
+            <h2 class="text-[32px] md:text-[min(6vw,3vw)] mb-4 font-crimson text-white font-semibold">Hi, Welcome to</h2>
+            <h1 class="text-[40px] md:text-[min(8vw,4vw)] text-black font-normal font-crimson">Thibault's Portfolio</h1>
         </div>
         
-        <!-- Background Elements -->
-        <div class="absolute inset-0">
-            <!-- Profile Image Container -->
-            <div class="profile-image-container fixed -bottom-[80px] -right-[20px] w-[30%] max-w-[450px] aspect-[450/750] z-[2]">
-                <!-- Logos/Tech Stack Container -->
-                <div class="logo-stack-container absolute right-[30%] bottom-[20%] w-[200%] aspect-[440/528] z-[-1]" style="transform: rotate(-9deg)">
-                    <img 
-                        src="assets/images/Logoshomepage.svg" 
-                        alt="Tech Stack" 
-                        class="w-full h-full object-contain opacity-35 select-none"
-                        draggable="false"
-                    >
-                </div>
+        <!-- Profile Image Container -->
+        <div class="profile-image-container md:fixed relative md:-bottom-[80px] md:-right-[20px] w-full md:w-[30%] ml-auto md:mx-0 mt-auto mb-0 max-w-none md:max-w-[450px] aspect-[450/750] z-[2] md:z-[2]">
+            <!-- Logos/Tech Stack Container -->
+            <div class="logo-stack-container absolute right-[30%] bottom-[20%] w-[200%] aspect-[440/528] z-[-1] md:z-[-1]" style="transform: rotate(-9deg)">
                 <img 
-                    src="assets/images/Photomewithoutbg.png" 
-                    alt="Profile" 
-                    class="w-full h-full object-contain object-right drop-shadow-custom select-none"
+                    src="assets/images/Logoshomepage.svg" 
+                    alt="Tech Stack" 
+                    class="w-full h-full object-contain opacity-30 md:opacity-35 select-none"
                     draggable="false"
                 >
             </div>
+            <img 
+                src="assets/images/Photomewithoutbg.png" 
+                alt="Profile" 
+                class="w-full h-full object-contain object-right drop-shadow-custom select-none opacity-100"
+                draggable="false"
+            >
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="w-full py-8">
-        <div class="container mx-auto text-center">
-            <div class="flex flex-col items-center justify-center gap-4">
+    <footer class="w-full md:fixed md:bottom-4 md:left-0 py-4 md:py-0 relative z-[1] bg-transparent">
+        <div class="w-full md:container md:mx-auto text-center">
+            <div class="flex flex-col items-center justify-center space-y-1">
                 <div class="text-black/70 font-crimson text-lg">
                     Made with <span class="text-red-500">❤</span> by Thibault
                 </div>
-                <div class="text-black/50 font-crimson text-sm">
+                <div class="text-black/50 font-crimson text-sm block">
                     © <span id="currentYear"></span> All rights reserved
                 </div>
             </div>
